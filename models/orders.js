@@ -3,16 +3,13 @@ const bookshelf = require('bookshelf')(knex);
 
 bookshelf.plugin('bookshelf-case-converter-plugin');
 
-const Users = bookshelf.Model.extend({
-    tableName: 'users',
+const Orders = bookshelf.Model.extend({
+    tableName: 'orders',
     hasTimestamps: true,
     hasTimestamps: ['created_at', 'updated_at'],
-    orders() {
-        return this.hasMany('Orders')
-      },
-    reservations() {
-        return this.hasMany('Reservations')
-      }
+    users() {
+        return this.belongsTo('Users')
+    }
 });
 
-module.exports = Users;
+module.exports = Orders;

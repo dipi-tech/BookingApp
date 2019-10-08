@@ -12,6 +12,20 @@ async function saveUser(userDetails) {
     }
 }
 
+async function fetchUserBasedOnId(userId) {
+    let val = new User;
+    try {
+        console.log(userId.toString())
+        val = await User.forge({ id: userId })
+            .fetch({ require: true })
+        console.log(val.toJSON());
+        return val
+    } catch (e) {
+        console.log(`Failed to activate link: ${e}`);
+        return false
+    }
+}
+
 async function activateLink(email) {
     let val = new User;
     try {
@@ -51,5 +65,6 @@ async function login(loginInfo) {
 module.exports = {
     saveUser,
     activateLink,
-    login
+    login,
+    fetchUserBasedOnId
 }

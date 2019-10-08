@@ -19,7 +19,7 @@ router.post('/login', function (req, res, next) {
 router.post('/register', async function (req, res, next) {
   userService.registerNewUser(req.body.userInfo).then(value => {
     console.log("Here ", value.get('activationLink'));
-    res.json({ error: false, data: { activationLink: value.get('activationLink') } });
+    res.json({ error: false, data: value });
   }).catch(err => {
     res.status(500).json({ error: true, data: { message: err.message } });
   })
