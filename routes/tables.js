@@ -10,6 +10,8 @@ router.post('/reserveTable', function (req, res, next) {
             res.json({ error: false, data: result });
         else
             res.json({ error: true, data: null })
+    }).catch(() => {
+        res.json({ error: true, data: null })
     })
 })
 
